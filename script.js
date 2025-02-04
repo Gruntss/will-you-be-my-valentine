@@ -28,9 +28,7 @@ noButton.addEventListener("click", function () {
 
 function handleYesClick() {
   titleElement.innerHTML = "Yay! I knew you would say yes! :3";
-  buttonsContainer.classList.add("hidden");
-  yesButton.style.display = "none";
-  noButton.style.display = "none";
+  buttonsContainer.style.display = "none"; // Hide button container
   changeImage("yes");
 }
 
@@ -69,6 +67,7 @@ function updateNoButtonText() {
     noButton.removeEventListener("click", handleNoClick);
     noButton.addEventListener("click", handleYesClick);
 
+    yesButton.innerHTML = "Yes"; // Change Yes button too
     yesButton.removeEventListener("click", handleYesClick);
     yesButton.addEventListener("click", handleYesClick);
   }
