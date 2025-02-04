@@ -29,8 +29,8 @@ noButton.addEventListener("click", function () {
 function handleYesClick() {
   titleElement.innerHTML = "Yay! I knew you would say yes! :3";
   buttonsContainer.classList.add("hidden");
-  yesButton.classList.add("hidden");
-  noButton.classList.add("hidden");
+  yesButton.style.display = "none";
+  noButton.style.display = "none";
   changeImage("yes");
 }
 
@@ -62,14 +62,18 @@ function changeImage(image) {
 function updateNoButtonText() {
   noButton.innerHTML = generateMessage(noCount);
 
-  // When reaching "Miss ganda, sige na", turn "No" into "Yes"
+  // When reaching "Miss ganda, sige na", turn both buttons into "Yes"
   if (noCount === 4) {
     noButton.innerHTML = "Yes";
     noButton.classList.add("btn--yes");
     noButton.removeEventListener("click", handleNoClick);
     noButton.addEventListener("click", handleYesClick);
+
+    yesButton.removeEventListener("click", handleYesClick);
+    yesButton.addEventListener("click", handleYesClick);
   }
 }
+
 function handleNoClick() {
   if (play) {
     noCount++;
