@@ -64,8 +64,10 @@ function updateNoButtonText() {
 
   // When reaching "Miss ganda, sige na", turn "No" into "Yes"
   if (noCount === 4) {
+    noButton.innerHTML = "Yes";
     noButton.classList.add("btn--yes");
     noButton.removeEventListener("click", handleNoClick);
     noButton.addEventListener("click", handleYesClick);
   }
 }
+
