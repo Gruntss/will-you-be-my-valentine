@@ -70,4 +70,12 @@ function updateNoButtonText() {
     noButton.addEventListener("click", handleYesClick);
   }
 }
+function handleNoClick() {
+  if (play) {
+    noCount++;
+    changeImage(noCount);
+    resizeYesButton();
+    updateNoButtonText();
+  }
+}
 
