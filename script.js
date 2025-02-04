@@ -19,7 +19,7 @@ noButton.addEventListener("click", function () {
     const imageIndex = Math.min(noCount, MAX_IMAGES);
     changeImage(imageIndex);
     resizeYesButton();
-    updateNoButtonText();
+    shrinkNoButtonText();
     if (noCount === MAX_IMAGES) {
       play = false;
     }
@@ -27,8 +27,10 @@ noButton.addEventListener("click", function () {
 });
 
 function handleYesClick() {
-  titleElement.innerHTML = "Yay!I knew you would say yes! :3";
+  titleElement.innerHTML = "Yay! I knew you would say yes! :3";
   buttonsContainer.classList.add("hidden");
+  yesButton.classList.add("hidden");
+  noButton.classList.add("hidden");
   changeImage("yes");
 }
 
@@ -42,12 +44,11 @@ function resizeYesButton() {
 
 function generateMessage(noCount) {
   const messages = [
-    "No",
     "How would we know if we don’t try?",
     "Pookie please",
     "Don't do this to me :(",
     "You're breaking my heart",
-    "Yes",
+    "Miss ganda, sige na"
   ];
 
   const messageIndex = Math.min(noCount, messages.length - 1);
@@ -60,4 +61,11 @@ function changeImage(image) {
 
 function updateNoButtonText() {
   noButton.innerHTML = generateMessage(noCount);
+
+  // When reaching "Miss ganda, sige na", turn "No" into "Yes"
+  if (noCount === 4) {
+    noButton.classList.add("btn--yes");
+    noButton.removeEventListener("click", handleNoClick);
+    noButton.addEventListener("click", handleYesClick);
+  }
 }
